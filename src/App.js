@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DashBoard />}>
             <Route path="home" element={<HomePage />} />
-            <Route path="selection" element={<PokemonSelectionPage />} />
+            <Route path="fighters" element={<PokemonSelectionPage />} />
             <Route path="day" element={<DateSelectionPage />} />
             <Route path="hour" element={<TimeSelectionPage />} />
             <Route index path="*" element={<HomePage />} />

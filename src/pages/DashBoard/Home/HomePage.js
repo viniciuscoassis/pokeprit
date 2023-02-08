@@ -14,7 +14,7 @@ export default function HomePage() {
           color="#b24dc6"
           variant="filled"
           onClick={() => {
-            navigate("/");
+            navigate("/fighters");
           }}
         >
           agendar
