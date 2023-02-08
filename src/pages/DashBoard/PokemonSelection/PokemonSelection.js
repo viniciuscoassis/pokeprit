@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import vs from "../../../assets/images/vs.png";
+import PokemonCard from "../../../components/PokemonSelection/PokemonCard";
 import Button from "../../../layouts/Button";
 
 export default function PokemonSelectionPage() {
@@ -10,12 +11,10 @@ export default function PokemonSelectionPage() {
       <div className="top">escolha seus lutadores</div>
       <div className="middle">
         <FighterContainer className="left">
-          <Box>ola</Box>
-          <Box>ola</Box>
-          <Box>ola</Box>
+          <PokemonCard />
         </FighterContainer>
         <div className="center">
-          <img src={vs} />
+          <img src={vs} alt="vs symbol" />
         </div>
         <FighterContainer className="right">segundo</FighterContainer>
       </div>
@@ -37,16 +36,10 @@ const FighterContainer = styled.div`
   border: 2px solid #d3d3d3;
   border-radius: 20px;
   padding: 1rem;
-  width: 23vw;
+  width: 25vw;
   height: 40vh;
   display: flex;
   flex-wrap: wrap;
-`;
-
-const Box = styled.div`
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  width: 9.1rem;
-  height: 8rem; ;
 `;
 
 const Wrapper = styled.div`
