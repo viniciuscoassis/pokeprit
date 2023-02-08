@@ -1,11 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Container from "../../assets/layouts/Container";
-import { Navigate } from "react-router-dom";
+import Container from "../../layouts/Container";
+import Logo from "../../assets/images/logo.png";
+import { useEffect } from "react";
 
 export default function DashBoard() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/home");
+  }, []);
   return (
     <DashboardLayout>
+      <img src={Logo} alt="logo" />
+
       <Wrapper>
         <Outlet />
       </Wrapper>
@@ -26,4 +33,7 @@ const DashboardLayout = styled.div`
     rgba(178, 77, 198, 1) 100%
   );
   min-height: 100vh;
+  img {
+    width: 10%;
+  }
 `;

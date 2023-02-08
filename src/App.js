@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashBoard from "./pages/DashBoard/Dashboard";
 import HomePage from "./pages/DashBoard/Home/HomePage";
 

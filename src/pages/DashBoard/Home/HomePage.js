@@ -1,27 +1,53 @@
-import Container from "../../../assets/layouts/Container";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Logo from "../../../assets/images/logo.png";
+import Button from "../../../layouts/Button";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
-      <div className="top">
-        {" "}
-        <img src={Logo} alt="logo" />
+      <div className="top">Agende já sua batalha pokemon!</div>
+      <div className="middle">deseja</div>
+      <div className="bottom">
+        <But
+          color="#b24dc6"
+          variant="filled"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          agendar
+        </But>
       </div>
-      <div className="middle">a</div>
-      <div className="bottom">b</div>
     </Wrapper>
   );
 }
+
+const But = styled(Button)`
+  background-color: #b24dc6;
+  color: white;
+  border-radius: 20px;
+`;
 const Wrapper = styled.div`
+  height: 100%;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   .top {
-    display: flex;
-    justify-content: center;
-    width: 10vw;
-    img {
-      width: 100%;
+    font-size: 3rem;
+    font-weight: 500;
+    width: 50%;
+    text-align: center;
+  }
+  .bottom {
+    div {
+      display: flex;
+      background-color: #b24dc6;
+      width: 15vw;
+      height: 5vh;
     }
   }
 `;
