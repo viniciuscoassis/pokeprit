@@ -36,4 +36,9 @@ const DashboardLayout = styled.div`
   img {
     width: 10%;
   }
+  @media (max-width: 600px) {
+    img {
+      width: 50%;
+    }
+  }
 `;

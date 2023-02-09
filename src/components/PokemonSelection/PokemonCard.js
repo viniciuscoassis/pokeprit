@@ -58,5 +58,17 @@ const Wrapper = styled.div`
     bottom: 0;
     left: 0;
     font-weight: 600;
+    font-size: 10px;
+    color: #3ca4b8;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    & > :not(:last-child) {
+    }
+    .image {
+      width: 70%;
+      margin: 0 auto;
+    }
   }
 `;

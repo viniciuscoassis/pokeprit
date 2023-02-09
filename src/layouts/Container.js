@@ -14,4 +14,10 @@ export default styled.div`
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   padding: 2rem;
+
+  @media (max-width: 600px) {
+    padding: 0;
+    min-width: 100vw;
+    min-height: 80vh;
+  }
 `;

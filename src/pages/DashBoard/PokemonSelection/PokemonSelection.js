@@ -11,6 +11,7 @@ export default function PokemonSelectionPage() {
   const { getPokemons } = useGetPokemons();
   const [pokemons, setPokemons] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [page, setPage] = useState(1);
 
   const fetchPokemons = async () => {
     const response = await getPokemons(0);
@@ -19,7 +20,13 @@ export default function PokemonSelectionPage() {
 
   useEffect(() => {
     fetchPokemons();
+    console.log(page);
   }, [refresh]);
+
+  const hadlePageSelect = (e) => {
+    setPage(e.target.value);
+    console.log(e);
+  };
 
   return (
     <Wrapper>
@@ -40,7 +47,13 @@ export default function PokemonSelectionPage() {
               : console.log("nada")}
           </PokemonContainer>
 
-          <Pagination count={10} />
+          <Pagination
+            size={"small"}
+            count={10}
+            onClick={hadlePageSelect}
+            showLastButton
+            showFirstButton
+          />
         </div>
 
         <div className="center">
@@ -78,6 +91,12 @@ const PokemonContainer = styled.div`
   min-height: 25rem;
   max-height: 25rem;
   margin-bottom: 1rem;
+  overflow-y: scroll;
+  @media (max-width: 600px) {
+    overflow-x: hidden;
+    display: flex;
+    width: 80vw;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -98,6 +117,7 @@ const Wrapper = styled.div`
 
   .middle {
     display: flex;
+
     .center {
       margin-top: 120px;
       width: 100px;
@@ -109,6 +129,12 @@ const Wrapper = styled.div`
         width: 100%;
         object-fit: cover;
       }
+    }
+  }
+  @media (max-width: 600px) {
+    overflow: scroll;
+    .middle {
+      flex-direction: column;
     }
   }
 `;
