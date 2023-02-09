@@ -1,25 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import vs from "../../../assets/images/vs.png";
 import PokemonCard from "../../../components/PokemonSelection/PokemonCard";
 import Button from "../../../layouts/Button";
+import { Pagination } from "@mui/material";
+import useGetPokemons from "../../../hooks/api/useGetPokemons";
 
 export default function PokemonSelectionPage() {
   const [selected1, setSelected1] = useState(false);
+  const { getPokemons } = useGetPokemons();
+  const [pokemons, setPokemons] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  const fetchPokemons = async () => {
+    const response = await getPokemons(0);
+    setPokemons(response);
+  };
+
+  useEffect(() => {
+    fetchPokemons();
+  }, [refresh]);
+
   return (
     <Wrapper>
       <div className="top">escolha seus lutadores</div>
       <div className="middle">
-        <FighterContainer className="left">
-          <PokemonCard />
-        </FighterContainer>
+        <div className="left ">
+          <PokemonContainer>
+            {pokemons ? console.log(pokemons) : console.log("nada")}
+          </PokemonContainer>
+
+          <Pagination count={10} />
+        </div>
+
         <div className="center">
           <img src={vs} alt="vs symbol" />
         </div>
-        <FighterContainer className="right">segundo</FighterContainer>
+        <div className="right ">
+          {" "}
+          <Pagination count={10} />
+        </div>
       </div>
       <div className="bottom">
-        <But>selecionar data</But>
+        <But
+          onClick={() => {
+            setRefresh(!refresh);
+          }}
+        >
+          selecionar data
+        </But>
       </div>
     </Wrapper>
   );
@@ -32,14 +61,13 @@ const But = styled(Button)`
   border-radius: 10px;
 `;
 
-const FighterContainer = styled.div`
-  border: 2px solid #d3d3d3;
-  border-radius: 20px;
-  padding: 1rem;
-  width: 25vw;
-  height: 40vh;
+const PokemonContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 29vw;
+  min-height: 25rem;
+  max-height: 25rem;
+  margin-bottom: 1rem;
 `;
 
 const Wrapper = styled.div`
@@ -51,21 +79,19 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
   .left {
-    border: 2px solid black;
-    width: 23vw;
-    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .right {
-    border: 2px solid black;
-    width: 23vw;
-  }
+
   .middle {
     display: flex;
     .center {
-      margin-top: 60px;
-      width: 200px;
-      height: 200px;
+      margin-top: 120px;
+      width: 100px;
+      height: 100px;
       display: flex;
       justify-content: center;
 
