@@ -27,7 +27,16 @@ export default function PokemonSelectionPage() {
       <div className="middle">
         <div className="left ">
           <PokemonContainer>
-            {pokemons ? console.log(pokemons) : console.log("nada")}
+            {pokemons
+              ? pokemons.results?.map((value, index) => (
+                  <PokemonCard
+                    value={value}
+                    key={index}
+                    setSelected1={setSelected1}
+                    selected1={selected1}
+                  />
+                ))
+              : console.log("nada")}
           </PokemonContainer>
 
           <Pagination count={10} />
