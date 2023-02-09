@@ -1,12 +1,26 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import useGetPokemonById from "../../hooks/api/useGetPokemonById";
 
 export default function PokemonCard({ value, setSelected1, selected1 }) {
+  const { getPokemonById } = useGetPokemonById();
+  const [pokemonInfo, setPokemonInfo] = useState({});
+
+  const fetchPokemonInfo = async () => {
+    const response = await getPokemonById(value.url);
+    setPokemonInfo(response);
+  };
+
+  useEffect(() => {
+    fetchPokemonInfo();
+  }, []);
+
   return (
-    <Wrapper onClick={() => setSelected1("")} selected1={selected1}>
+    <Wrapper onClick={() => setSelected1(pokemonInfo.id)} selected1={selected1}>
       <div className="image">
-        <img src={""} alt="pokemon" />
+        <img src={pokemonInfo?.sprites?.front_default} alt="pokemonImg" />
       </div>
-      <div className="name"></div>
+      <div className="name">{pokemonInfo?.name}</div>
     </Wrapper>
   );
 }
