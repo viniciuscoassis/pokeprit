@@ -7,7 +7,7 @@ import { Pagination } from "@mui/material";
 import useGetPokemons from "../../../hooks/api/useGetPokemons";
 
 export default function PokemonSelectionPage() {
-  const [selected1, setSelected1] = useState(false);
+  const [selected1, setSelected1] = useState(0);
   const { getPokemons } = useGetPokemons();
   const [pokemons, setPokemons] = useState([]);
   const [refresh, setRefresh] = useState(false);
@@ -30,6 +30,7 @@ export default function PokemonSelectionPage() {
             {pokemons
               ? pokemons.results?.map((value, index) => (
                   <PokemonCard
+                    refresh={refresh}
                     value={value}
                     key={index}
                     setSelected1={setSelected1}
