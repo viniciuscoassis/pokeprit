@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import useGetPokemonById from "../../hooks/api/useGetPokemonById";
 
-export default function PokemonCard({
-  value,
-  setSelected1,
-  selected1,
-  refresh,
-}) {
+export default function PokemonCard({ value, set, data }) {
   const { getPokemonById } = useGetPokemonById();
   const [pokemonInfo, setPokemonInfo] = useState({});
 
@@ -15,17 +11,16 @@ export default function PokemonCard({
     const response = await getPokemonById(value.url);
     setPokemonInfo(response);
   };
-
   useEffect(() => {
     fetchPokemonInfo();
-  }, [refresh]);
+  }, []);
 
   return (
     <Wrapper
-      onClick={() => setSelected1(pokemonInfo?.id)}
-      selected1={selected1}
+      onClick={() => set(pokemonInfo?.id)}
+      data={data}
+      isSelected={data === pokemonInfo?.id}
       id={pokemonInfo?.id}
-      isSelected={selected1 === pokemonInfo?.id}
     >
       <div className="image">
         <img src={pokemonInfo?.sprites?.front_default} alt="pokemonImg" />
@@ -44,6 +39,7 @@ const Wrapper = styled.div`
 
   :hover {
     transform: scale(1.1);
+    z-index: 10;
   }
   .image {
     width: 100%;

@@ -8,7 +8,9 @@ export default function HomePage() {
   return (
     <Wrapper>
       <div className="top">Agende já sua batalha pokemon!</div>
-      <div className="middle">deseja</div>
+      <div className="middle">
+        "Pegue-os todos e lute agora! Agende sua batalha Pokémon hoje!"
+      </div>
       <div className="bottom">
         <But
           color="#b24dc6"
@@ -25,9 +27,11 @@ export default function HomePage() {
 }
 
 const But = styled(Button)`
+  width: 10vw;
   background-color: #b24dc6;
   color: white;
   border-radius: 20px;
+  font-family: "Press Start 2P", cursive;
 `;
 const Wrapper = styled.div`
   height: 100%;
@@ -36,6 +40,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  font-family: "Press Start 2P", cursive;
   .top {
     font-size: 3rem;
     font-weight: 500;
