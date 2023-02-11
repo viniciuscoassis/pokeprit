@@ -3,24 +3,34 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 import useGetPokemonById from "../../hooks/api/useGetPokemonById";
 
-export default function PokemonCard({ value, set, data }) {
+export default function PokemonCard({
+  value,
+  set,
+  data,
+  pageOnBlock1,
+  pageOnBlock2,
+  type,
+}) {
   const { getPokemonById } = useGetPokemonById();
   const [pokemonInfo, setPokemonInfo] = useState({});
 
   const fetchPokemonInfo = async () => {
     const response = await getPokemonById(value.url);
     setPokemonInfo(response);
+    console.log(pageOnBlock1);
   };
+
   useEffect(() => {
     fetchPokemonInfo();
-  }, []);
+    console.log(pageOnBlock1);
+  }, [pageOnBlock1, pageOnBlock2, value]);
 
   return (
     <Wrapper
       onClick={() => set(pokemonInfo?.id)}
       data={data}
       isSelected={data === pokemonInfo?.id}
-      id={pokemonInfo?.id}
+      id={pokemonInfo.id}
     >
       <div className="image">
         <img src={pokemonInfo?.sprites?.front_default} alt="pokemonImg" />

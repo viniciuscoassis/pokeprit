@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import styled from "styled-components";
 import vs from "../../../assets/images/vs.png";
 import PokemonCard from "../../../components/PokemonSelection/PokemonCard";
@@ -16,38 +16,31 @@ export default function PokemonSelectionPage() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemons2, setPokemons2] = useState([]);
 
-  const [refresh, setRefresh] = useState(false);
-
   const [pageOnBlock1, setPageOnBlock1] = useState(1);
   const [pageOnBlock2, setPageOnBlock2] = useState(1);
 
   const [count, setCount] = useState(0);
 
   const fetchPokemons = async () => {
-    const response = await getPokemons(9 * pageOnBlock1);
-    console.log(response.results);
-    setPokemons(response.results);
+    const response = await getPokemons(9 * (pageOnBlock1 - 1));
+    setPokemons([...response.results]);
     setCount(response.count);
   };
 
   const fetchPokemons2 = async () => {
-    const response = await getPokemons(
-      pageOnBlock2 === 0 ? "0" : 9 * (pageOnBlock2 - 1)
-    );
-    setPokemons2(response.results);
+    const response = await getPokemons(9 * (pageOnBlock2 - 1));
+    setPokemons2([...response.results]);
     setCount(response.count);
   };
 
   useEffect(() => {
     fetchPokemons();
-    console.log(pokemons);
-  }, []);
-  useEffect(() => {
     fetchPokemons2();
-  }, []);
+  }, [pageOnBlock1, pageOnBlock2]);
 
   const hadlePageSelect = (e, value) => {
     setPageOnBlock1(value);
+    console.log(selected1, selected2);
   };
   const hadlePage2Select = (e, value) => {
     setPageOnBlock2(value);
@@ -62,7 +55,6 @@ export default function PokemonSelectionPage() {
             {pokemons ? (
               pokemons.map((value, index) => (
                 <PokemonCard
-                  refresh={refresh}
                   value={value}
                   key={index}
                   set={setSelected1}
@@ -70,6 +62,8 @@ export default function PokemonSelectionPage() {
                   selected1={selected1}
                   selected2={selected2}
                   type="first"
+                  pageOnBlock1={pageOnBlock1}
+                  pageOnBlock2={pageOnBlock2}
                 />
               ))
             ) : (
@@ -104,7 +98,6 @@ export default function PokemonSelectionPage() {
             {pokemons2 ? (
               pokemons2.map((value, index) => (
                 <PokemonCard
-                  refresh={refresh}
                   value={value}
                   key={index}
                   set={setSelected2}
@@ -112,6 +105,8 @@ export default function PokemonSelectionPage() {
                   selected1={selected1}
                   selected2={selected2}
                   type="second"
+                  pageOnBlock1={pageOnBlock1}
+                  pageOnBlock2={pageOnBlock2}
                 />
               ))
             ) : (
@@ -139,13 +134,7 @@ export default function PokemonSelectionPage() {
         </div>
       </div>
       <div className="bottom">
-        <But
-          onClick={() => {
-            setRefresh(!refresh);
-          }}
-        >
-          selecionar data
-        </But>
+        <But onClick={() => {}}>selecionar data</But>
       </div>
     </Wrapper>
   );
