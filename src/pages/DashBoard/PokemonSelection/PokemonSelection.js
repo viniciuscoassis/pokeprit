@@ -92,7 +92,6 @@ export default function PokemonSelectionPage() {
             showFirstButton
           />
         </div>
-
         <div className="center">
           <img src={vs} alt="vs symbol" />
         </div>
