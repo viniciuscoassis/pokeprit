@@ -138,14 +138,18 @@ export default function PokemonSelectionPage() {
       </div>
       <div className="bottom">
         <But
-          onClick={() => {
-            selected1 !== 0 || selected2 !== 0
-              ? navigate("/day", {
-                  id1: selected1,
-                  id2: selected2,
-                })
-              : toast.error("Selecione os lutadores primeiro!");
-          }}
+          onClick={
+            selected1 === 0 || selected2 === 0
+              ? () => toast.error("Selecione os lutadores primeiro!")
+              : () => {
+                  navigate("/day", {
+                    state: {
+                      id1: selected1,
+                      id2: selected2,
+                    },
+                  });
+                }
+          }
         >
           selecionar data
         </But>
