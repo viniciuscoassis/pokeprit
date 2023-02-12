@@ -77,7 +77,12 @@ export default function ReviewPage() {
         </div>
       </div>
       <div className="bottom">
-        <div>Data: {data}</div> <div>Horário: {hora}</div>{" "}
+        <div>
+          <span>Data:</span> {data}
+        </div>{" "}
+        <div>
+          <span>Horário:</span> {hora}
+        </div>{" "}
         <But onClick={confirmBattle}>confirmar batalha </But>
       </div>
     </Wrapper>
@@ -101,6 +106,9 @@ const Wrapper = styled.div`
   .bottom {
     div {
       margin: 0 auto;
+      span {
+        font-weight: 600;
+      }
     }
   }
   .top {
@@ -120,6 +128,28 @@ const Wrapper = styled.div`
       img {
         width: 100%;
         height: 100%;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 2rem 0;
+
+    .top {
+      font-size: 1rem;
+    }
+    .middle {
+      margin-bottom: 0;
+      .fighter {
+        height: 10rem;
+      }
+    }
+    .bottom {
+      div:nth-child(2) {
+        margin-bottom: 2rem;
       }
     }
   }
