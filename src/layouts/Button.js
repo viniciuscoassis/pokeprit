@@ -15,6 +15,7 @@ export default styled.button`
   :hover {
     cursor: pointer;
     transform: scale(1.1);
+    filter: brightness(1.2);
   }
   :active {
     transform: scale(1.05);

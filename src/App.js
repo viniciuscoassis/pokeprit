@@ -4,7 +4,7 @@ import DashBoard from "./pages/DashBoard/Dashboard";
 import HomePage from "./pages/DashBoard/Home/HomePage";
 import PokemonSelectionPage from "./pages/DashBoard/PokemonSelection/PokemonSelection";
 import DateSelectionPage from "./pages/DashBoard/DateSelection/DateSelection";
-import TimeSelectionPage from "./pages/DashBoard/TimeSelection/TimeSelection";
+import ReviewPage from "./pages/DashBoard/ReviewSchedule/ReviewPage";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             <Route path="home" element={<HomePage />} />
             <Route path="fighters" element={<PokemonSelectionPage />} />
             <Route path="day" element={<DateSelectionPage />} />
-            <Route path="hour" element={<TimeSelectionPage />} />
+            <Route path="review" element={<ReviewPage />} />
             <Route index path="*" element={<HomePage />} />
           </Route>
         </Routes>
