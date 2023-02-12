@@ -6,6 +6,8 @@ import Button from "../../../layouts/Button";
 import { Pagination } from "@mui/material";
 import useGetPokemons from "../../../hooks/api/useGetPokemons";
 import { MagnifyingGlass } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function PokemonSelectionPage() {
   const [selected1, setSelected1] = useState(0);
@@ -20,6 +22,8 @@ export default function PokemonSelectionPage() {
   const [pageOnBlock2, setPageOnBlock2] = useState(1);
 
   const [count, setCount] = useState(0);
+
+  const navigate = useNavigate();
 
   const fetchPokemons = async () => {
     const response = await getPokemons(9 * (pageOnBlock1 - 1));
@@ -40,7 +44,6 @@ export default function PokemonSelectionPage() {
 
   const hadlePageSelect = (e, value) => {
     setPageOnBlock1(value);
-    console.log(selected1, selected2);
   };
   const hadlePage2Select = (e, value) => {
     setPageOnBlock2(value);
@@ -134,7 +137,18 @@ export default function PokemonSelectionPage() {
         </div>
       </div>
       <div className="bottom">
-        <But onClick={() => {}}>selecionar data</But>
+        <But
+          onClick={() => {
+            selected1 !== 0 || selected2 !== 0
+              ? navigate("/day", {
+                  id1: selected1,
+                  id2: selected2,
+                })
+              : toast.error("Selecione os lutadores primeiro!");
+          }}
+        >
+          selecionar data
+        </But>
       </div>
     </Wrapper>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import useGetPokemonById from "../../hooks/api/useGetPokemonById";
@@ -17,12 +18,10 @@ export default function PokemonCard({
   const fetchPokemonInfo = async () => {
     const response = await getPokemonById(value.url);
     setPokemonInfo(response);
-    console.log(pageOnBlock1);
   };
 
   useEffect(() => {
     fetchPokemonInfo();
-    console.log(pageOnBlock1);
   }, [pageOnBlock1, pageOnBlock2, value]);
 
   return (
@@ -32,9 +31,14 @@ export default function PokemonCard({
       isSelected={data === pokemonInfo?.id}
       id={pokemonInfo.id}
     >
-      <div className="image">
-        <img src={pokemonInfo?.sprites?.front_default} alt="pokemonImg" />
-      </div>
+      {pokemonInfo?.sprites ? (
+        <div className="image">
+          <img src={pokemonInfo?.sprites.front_default} alt="pokemonImg" />{" "}
+        </div>
+      ) : (
+        <ThreeDots color="#b24dc6" />
+      )}
+
       <div className="name">{pokemonInfo?.name}</div>
     </Wrapper>
   );

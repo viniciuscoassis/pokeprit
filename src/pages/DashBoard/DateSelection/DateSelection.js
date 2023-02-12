@@ -1,3 +1,6 @@
+import { useLocation } from "react-router-dom";
+
 export default function DateSelectionPage() {
-  return <></>;
+  const a = useLocation();
+  return <>{a}</>;
 }
