@@ -31,7 +31,10 @@ const But = styled(Button)`
   background-color: #b24dc6;
   color: white;
   border-radius: 20px;
-  font-family: "Press Start 2P", cursive;
+  @media (max-width: 600px) {
+    margin: 0 auto;
+    width: 40vw;
+  }
 `;
 const Wrapper = styled.div`
   height: 100%;
@@ -39,13 +42,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   justify-content: space-around;
-  font-family: "Press Start 2P", cursive;
   .top {
     font-size: 3rem;
     font-weight: 500;
-    width: 50%;
     text-align: center;
+    font-family: "Press Start 2P", cursive;
   }
   .bottom {
     div {
@@ -56,8 +59,12 @@ const Wrapper = styled.div`
     }
   }
   @media (max-width: 600px) {
+    padding: 1rem;
+    align-items: initial;
     .top {
-      max-width: 50vw;
+      width: 90vw;
+      font-size: 2rem;
+      text-align: initial;
     }
   }
 `;
