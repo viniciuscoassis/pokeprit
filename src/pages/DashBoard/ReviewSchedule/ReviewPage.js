@@ -14,6 +14,9 @@ export default function ReviewPage() {
   const navigate = useNavigate();
   const ids = location.state.ids;
 
+  const data = format(location.state.date, "dd/MM/yyyy");
+  const hora = format(location.state.date, "p");
+
   const fetchPokemon1ById = async () => {
     const pokemonInfo = await getPokemonById(ids.id1);
     setPokemon1(pokemonInfo);
@@ -28,6 +31,10 @@ export default function ReviewPage() {
     fetchPokemon2ById();
     console.log(location.state);
   }, []);
+
+  const confirmBattle = () => {
+    navigate("/home");
+  };
 
   return (
     <Wrapper>
@@ -54,9 +61,8 @@ export default function ReviewPage() {
         </div>
       </div>
       <div className="bottom">
-        <div>Data: {format(location.state.date, "dd/MM/yyyy")}</div>{" "}
-        <div>Horário: {format(location.state.date, "p")}</div>{" "}
-        <But onClick={() => navigate("/home")}>confirmar </But>
+        <div>Data: {data}</div> <div>Horário: {hora}</div>{" "}
+        <But onClick={confirmBattle}>confirmar batalha </But>
       </div>
     </Wrapper>
   );
