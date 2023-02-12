@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export default function BattleCard() {
+export default function BattleCard({ value }) {
   return (
     <Wrapper>
       <div className="fighters">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" />
+        <img src={value.img1} />
         <div>X</div>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" />
+        <img src={value.img2} />
       </div>
       <div className="divider"> </div>
       <div className="info">
-        <div>Data: 12/02/2021</div>
-        <div>Hora: 5 PM</div>
+        <div className="date">Data: {value.data}</div>
+        <div>Hora: {value.hora}</div>
       </div>
     </Wrapper>
   );
@@ -34,8 +34,8 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     img {
-      width: 100%;
-      height: 100%;
+      width: 80%;
+      height: 80%;
       object-fit: cover;
     }
   }
@@ -44,5 +44,26 @@ const Wrapper = styled.div`
     width: 2px;
     background-color: black;
     margin-right: 2rem;
+  }
+  @media (max-width: 600px) {
+    height: 8rem;
+
+    .fighters {
+      width: 40vw;
+      height: 100%;
+      img {
+        width: 40%;
+        height: 40%;
+      }
+    }
+    .info {
+      max-width: 20vw;
+      .date {
+        margin-bottom: 1rem;
+      }
+    }
+    .divider {
+      height: 80%;
+    }
   }
 `;
