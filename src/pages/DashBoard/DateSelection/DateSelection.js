@@ -41,7 +41,7 @@ export default function DateSelectionPage() {
           onClick={
             isBefore(startDate, new Date())
               ? () => toast.warn("A data escolhida deve ser futura")
-              : () => navigate("/review", { state: ids, date: startDate })
+              : () => navigate("/review", { state: { ids, date: startDate } })
           }
         >
           confirmar{" "}

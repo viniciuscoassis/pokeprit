@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useGetPokemonById from "../../../hooks/api/useGetPokemonById";
 import Button from "../../../layouts/Button";
+import format from "date-fns/format";
 
 export default function ReviewPage() {
   const { getPokemonById } = useGetPokemonById();
@@ -11,7 +12,7 @@ export default function ReviewPage() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const ids = location.state;
+  const ids = location.state.ids;
 
   const fetchPokemon1ById = async () => {
     const pokemonInfo = await getPokemonById(ids.id1);
@@ -25,7 +26,7 @@ export default function ReviewPage() {
   useEffect(() => {
     fetchPokemon1ById();
     fetchPokemon2ById();
-    console.log(ids);
+    console.log(location.state);
   }, []);
 
   return (
@@ -39,7 +40,13 @@ export default function ReviewPage() {
       </div>
       <div className="middle">
         <div className="left fighter">
-          <img src={pokemon1?.sprites?.back_default} />
+          <img
+            src={
+              pokemon1?.sprites?.back_default
+                ? pokemon1?.sprites?.back_default
+                : pokemon1?.sprites?.front_default
+            }
+          />
         </div>
         <div className="x">X</div>
         <div className="right fighter">
@@ -47,7 +54,8 @@ export default function ReviewPage() {
         </div>
       </div>
       <div className="bottom">
-        <div>data: </div>{" "}
+        <div>Data: {format(location.state.date, "dd/MM/yyyy")}</div>{" "}
+        <div>Horário: {format(location.state.date, "p")}</div>{" "}
         <But onClick={() => navigate("/home")}>confirmar </But>
       </div>
     </Wrapper>
@@ -83,6 +91,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 2rem;
     .fighter {
       height: 25rem;
 

@@ -206,6 +206,11 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
   }
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .middle {
     display: flex;
