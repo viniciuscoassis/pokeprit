@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import styled from "styled-components";
-import useGetPokemonById from "../../hooks/api/useGetPokemonById";
+import useGetPokemonByUrl from "../../hooks/api/useGetPokemonByUrl";
 
 export default function PokemonCard({
   value,
@@ -12,11 +12,11 @@ export default function PokemonCard({
   pageOnBlock2,
   type,
 }) {
-  const { getPokemonById } = useGetPokemonById();
+  const { getPokemonByUrl } = useGetPokemonByUrl();
   const [pokemonInfo, setPokemonInfo] = useState({});
 
   const fetchPokemonInfo = async () => {
-    const response = await getPokemonById(value.url);
+    const response = await getPokemonByUrl(value.url);
     setPokemonInfo(response);
   };
 
