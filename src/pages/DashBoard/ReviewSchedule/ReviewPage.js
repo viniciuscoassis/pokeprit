@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import useGetPokemonById from "../../../hooks/api/useGetPokemonByUrl";
+import useGetPokemonById from "../../../hooks/api/useGetPokemonById";
+import Button from "../../../layouts/Button";
 
 export default function ReviewPage() {
   const { getPokemonById } = useGetPokemonById();
@@ -9,6 +10,7 @@ export default function ReviewPage() {
   const [pokemon2, setPokemon2] = useState({});
 
   const location = useLocation();
+  const navigate = useNavigate();
   const ids = location.state;
 
   const fetchPokemon1ById = async () => {
@@ -17,14 +19,14 @@ export default function ReviewPage() {
   };
   const fetchPokemon2ById = async () => {
     const pokemonInfo = await getPokemonById(ids.id2);
-    setPokemon1(pokemonInfo);
+    setPokemon2(pokemonInfo);
   };
 
   useEffect(() => {
     fetchPokemon1ById();
     fetchPokemon2ById();
     console.log(ids);
-  });
+  }, []);
 
   return (
     <Wrapper>
@@ -36,21 +38,58 @@ export default function ReviewPage() {
         </h1>
       </div>
       <div className="middle">
-        <div className="left-fighet">
-          <img src={pokemon1?.sprites?.front_default} />
+        <div className="left fighter">
+          <img src={pokemon1?.sprites?.back_default} />
         </div>
-        <div className="x"></div>
-        <div className="right-fighet"></div>
+        <div className="x">X</div>
+        <div className="right fighter">
+          <img src={pokemon2?.sprites?.front_default} />
+        </div>
       </div>
-      <div className="bottom"></div>
+      <div className="bottom">
+        <div>data: </div>{" "}
+        <But onClick={() => navigate("/home")}>confirmar </But>
+      </div>
     </Wrapper>
   );
 }
+const But = styled(Button)`
+  width: 200px;
+  height: 2rem;
+  background-color: #3ca4b8;
+  color: white;
+  font-size: 10px;
+  border-radius: 10px;
+  margin: 0 auto;
+`;
 
 const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .bottom {
+    div {
+      margin: 0 auto;
+    }
+  }
   .top {
     text-align: center;
     font-family: "Press Start 2P", cursive;
     font-size: 30px;
+  }
+  .middle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .fighter {
+      height: 25rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 `;

@@ -2,16 +2,16 @@ import useAsync from "../useAsync";
 
 import * as pokemonApi from "../../services/pokemonApi";
 
-export default function useGetPokemonByUrl() {
+export default function useGetPokemonById() {
   const {
     loading: pokemonsByIdLoading,
     error: pokemonsByIdError,
-    act: getPokemonByUrl,
+    act: getPokemonById,
   } = useAsync((data) => pokemonApi.getPokemonById(data), false);
 
   return {
     pokemonsByIdLoading,
     pokemonsByIdError,
-    getPokemonByUrl,
+    getPokemonById,
   };
 }

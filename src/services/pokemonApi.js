@@ -7,8 +7,14 @@ export async function getPokemons(offset) {
   return response.data;
 }
 
-export async function getPokemonById(url) {
+export async function getPokemonByUrl(url) {
   const response = await api.get(url);
+
+  return response.data;
+}
+
+export async function getPokemonById(id) {
+  const response = await api.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
   return response.data;
 }

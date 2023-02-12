@@ -4,14 +4,14 @@ import * as pokemonApi from "../../services/pokemonApi";
 
 export default function useGetPokemonByUrl() {
   const {
-    loading: pokemonsByIdLoading,
-    error: pokemonsByIdError,
+    loading: pokemonsByUrlLoading,
+    error: pokemonsByUrlError,
     act: getPokemonByUrl,
-  } = useAsync((data) => pokemonApi.getPokemonById(data), false);
+  } = useAsync((data) => pokemonApi.getPokemonByUrl(data), false);
 
   return {
-    pokemonsByIdLoading,
-    pokemonsByIdError,
+    pokemonsByUrlLoading,
+    pokemonsByUrlError,
     getPokemonByUrl,
   };
 }
