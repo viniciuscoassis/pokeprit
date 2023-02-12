@@ -6,12 +6,8 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import BattleCard from "./BattleCard";
 
 export default function Menu() {
-  const [isActivated, setIsActivated] = useState(true);
+  const [isActivated, setIsActivated] = useState(false);
   const [storedValue, setValue] = useLocalStorage("battles", []);
-
-  useEffect(() => {
-    console.log(storedValue);
-  }, []);
 
   return (
     <Wrapper isActivated={isActivated}>

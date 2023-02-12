@@ -141,6 +141,8 @@ export default function PokemonSelectionPage() {
           onClick={
             selected1 === 0 || selected2 === 0
               ? () => toast.error("Selecione os lutadores primeiro!")
+              : selected1 === selected2
+              ? () => toast.warn("Selecione lutadores diferentes para lutar!")
               : () => {
                   navigate("/day", {
                     state: {
@@ -215,7 +217,6 @@ const Wrapper = styled.div`
 
   .middle {
     display: flex;
-    width: 100%;
 
     .center {
       margin-top: 120px;

@@ -57,6 +57,7 @@ const Wrapper = styled.div`
       }
     }
     .info {
+      font-weight: 100;
       max-width: 20vw;
       .date {
         margin-bottom: 1rem;

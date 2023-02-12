@@ -5,6 +5,7 @@ import useGetPokemonById from "../../../hooks/api/useGetPokemonById";
 import Button from "../../../layouts/Button";
 import format from "date-fns/format";
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import { toast } from "react-toastify";
 
 export default function ReviewPage() {
   const { getPokemonById } = useGetPokemonById();
@@ -33,12 +34,9 @@ export default function ReviewPage() {
   useEffect(() => {
     fetchPokemon1ById();
     fetchPokemon2ById();
-    console.log(storedValue);
   }, []);
 
   const confirmBattle = () => {
-    navigate("/home");
-
     setValue([
       ...storedValue,
       {
@@ -50,6 +48,11 @@ export default function ReviewPage() {
         img2: pokemon2.sprites.front_default,
       },
     ]);
+    toast("Batalha agendada com sucesso!");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   return (
