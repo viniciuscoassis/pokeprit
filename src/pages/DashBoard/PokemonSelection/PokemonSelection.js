@@ -163,6 +163,9 @@ const But = styled(Button)`
   background-color: #b24dc6;
   color: white;
   border-radius: 10px;
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+  }
 `;
 
 const PokemonContainer = styled.div`
@@ -179,10 +182,9 @@ const PokemonContainer = styled.div`
     display: none;
   }
   @media (max-width: 600px) {
-    overflow-x: hidden;
-    display: flex;
-    width: 80vw;
     padding-left: 0.5rem;
+    width: 100%;
+    max-width: none;
   }
 `;
 
@@ -214,6 +216,7 @@ const Wrapper = styled.div`
 
   .middle {
     display: flex;
+    width: 100%;
 
     .center {
       margin-top: 120px;
@@ -230,8 +233,26 @@ const Wrapper = styled.div`
   }
   @media (max-width: 600px) {
     overflow: scroll;
+    .top {
+      margin-bottom: 1rem;
+      position: absolute;
+      z-index: 2;
+      background-color: white;
+      height: 4rem;
+    }
     .middle {
+      margin-top: 3rem;
       flex-direction: column;
+      .left {
+        width: 105%;
+      }
+      .right {
+        width: 105%;
+      }
+      .center {
+        margin: 2rem 0;
+        margin-left: 6.5rem;
+      }
     }
   }
 `;
