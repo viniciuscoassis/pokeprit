@@ -164,7 +164,6 @@ const But = styled(Button)`
   color: white;
   border-radius: 10px;
   @media (max-width: 600px) {
-    margin-top: 1rem;
   }
 `;
 
@@ -233,12 +232,20 @@ const Wrapper = styled.div`
   }
   @media (max-width: 600px) {
     overflow: scroll;
+    .bottom {
+      position: relative;
+    }
     .top {
       margin-bottom: 1rem;
       position: absolute;
+      margin-top: -1.95rem;
+      border-radius: 10px;
       z-index: 2;
       background-color: white;
       height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .middle {
       margin-top: 3rem;
@@ -248,6 +255,7 @@ const Wrapper = styled.div`
       }
       .right {
         width: 105%;
+        margin-bottom: 2rem;
       }
       .center {
         margin: 2rem 0;
