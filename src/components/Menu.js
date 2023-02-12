@@ -2,9 +2,12 @@ import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import styled from "styled-components";
+import useLocalStorage from "../hooks/useLocalStorage";
+import BattleCard from "./BattleCard";
 
 export default function Menu() {
   const [isActivated, setIsActivated] = useState(true);
+  const [storedValue, setValue] = useLocalStorage("battles", []);
 
   return (
     <Wrapper isActivated={isActivated}>
@@ -12,6 +15,15 @@ export default function Menu() {
       <div className="menu">
         <div className="X" onClick={() => setIsActivated(!isActivated)}>
           X
+        </div>
+        <div className="battlesMenu">
+          <h1>Batalhas agendadas:</h1>
+          <div className="battleContainer">
+            <BattleCard />
+            <BattleCard />
+            <BattleCard />
+            <BattleCard />
+          </div>
         </div>
       </div>
     </Wrapper>
@@ -29,13 +41,27 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 5s ease-in-out;
+  .battlesMenu {
+    .battleContainer {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border: 1px solid black;
+      border-radius: 10px;
+      height: 50vh;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  }
   .X {
     position: absolute;
     right: 20px;
     top: 20px;
   }
   .menu {
+    padding: 2rem;
+    font-family: "Press Start 2P", cursive;
+
+    transition: all 1s ease-out;
     position: absolute;
     background-color: white;
     min-width: 50vw;
