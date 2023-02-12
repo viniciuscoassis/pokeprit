@@ -2,8 +2,9 @@ import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Container from "../../layouts/Container";
 import Logo from "../../assets/images/logo.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import Menu from "../../components/Menu";
 
 export default function DashBoard() {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ export default function DashBoard() {
   return (
     <DashboardLayout>
       <img src={Logo} alt="logo" />
-      <Menu>
-        <AiOutlineMenu />
-      </Menu>
+      <Menu />
       <Wrapper>
         <Outlet />
       </Wrapper>
@@ -23,18 +22,6 @@ export default function DashBoard() {
   );
 }
 
-const Menu = styled.div`
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 const Wrapper = styled(Container)``;
 
 const DashboardLayout = styled.div`
