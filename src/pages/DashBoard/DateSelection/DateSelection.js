@@ -16,10 +16,6 @@ export default function DateSelectionPage() {
   const navigate = useNavigate();
   const ids = location.state;
 
-  useEffect(() => {
-    console.log(startDate);
-  }, []);
-
   return (
     <Wrapper>
       <div className="top">

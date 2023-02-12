@@ -4,36 +4,52 @@ import styled from "styled-components";
 import useGetPokemonById from "../../../hooks/api/useGetPokemonById";
 import Button from "../../../layouts/Button";
 import format from "date-fns/format";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 export default function ReviewPage() {
   const { getPokemonById } = useGetPokemonById();
   const [pokemon1, setPokemon1] = useState({});
   const [pokemon2, setPokemon2] = useState({});
+  const [storedValue, setValue] = useLocalStorage("battles", []);
 
   const location = useLocation();
   const navigate = useNavigate();
   const ids = location.state.ids;
+  const id1 = ids.id1;
+  const id2 = ids.id2;
 
   const data = format(location.state.date, "dd/MM/yyyy");
   const hora = format(location.state.date, "p");
 
   const fetchPokemon1ById = async () => {
-    const pokemonInfo = await getPokemonById(ids.id1);
+    const pokemonInfo = await getPokemonById(id1);
     setPokemon1(pokemonInfo);
   };
   const fetchPokemon2ById = async () => {
-    const pokemonInfo = await getPokemonById(ids.id2);
+    const pokemonInfo = await getPokemonById(id2);
     setPokemon2(pokemonInfo);
   };
 
   useEffect(() => {
     fetchPokemon1ById();
     fetchPokemon2ById();
-    console.log(location.state);
+    console.log(storedValue);
   }, []);
 
   const confirmBattle = () => {
     navigate("/home");
+
+    setValue([
+      ...storedValue,
+      {
+        data,
+        hora,
+        id1,
+        id2,
+        img1: pokemon1.sprites.front_default,
+        img2: pokemon2.sprites.front_default,
+      },
+    ]);
   };
 
   return (
